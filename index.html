@@ -13,7 +13,7 @@
         }
 
         body {
-            background: radial-gradient(circle, #2a0845 0%, #000000 100%);
+            background: radial-gradient(circle at center, #1f052d 0%, #000000 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,7 +26,7 @@
         .container {
             width: 100%;
             max-width: 380px;
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
@@ -35,7 +35,7 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             position: relative;
             z-index: 2;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .profile-img {
@@ -45,7 +45,7 @@
             object-fit: cover;
             border: 3px solid #ff4757;
             margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.6);
         }
 
         h1 {
@@ -69,7 +69,7 @@
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 71, 87, 0.6);
+            box-shadow: 0 0 25px rgba(255, 71, 87, 0.8);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -77,7 +77,7 @@
         }
 
         .bomb-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.92);
         }
 
         #canvas-container {
@@ -90,26 +90,28 @@
             z-index: 10;
         }
 
-        /* Hearts ko chhota aur fast movement ke liye */
-        .small-heart {
+        /* Extreme Small & Super Glowing Hearts */
+        .tiny-heart {
             position: absolute;
-            font-size: 10px; /* Size chhota kiya gaya hai */
-            transition: all 1.8s cubic-bezier(0.1, 1, 0.3, 1);
-            opacity: 1;
-            text-shadow: 0 0 6px rgba(255, 105, 180, 0.9);
+            font-size: 8px;
+            opacity: 0;
+            pointer-events: none;
+            text-shadow: 0 0 6px #ff4757, 0 0 12px #ff6b81;
+            will-change: transform, left, top, opacity;
         }
 
-        .confetti {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            animation: fall 2.5s linear forwards;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        /* Flash background on blast */
+        .flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 105, 180, 0.25);
+            z-index: 8;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s ease-out;
         }
 
         .center-love-text {
@@ -119,11 +121,11 @@
             transform: translate(-50%, -50%) scale(0);
             z-index: 20;
             color: #fff;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
-            text-shadow: 0 0 15px #ff4757, 0 0 30px #ff6b81;
+            text-shadow: 0 0 15px #ff4757, 0 0 35px #ff6b81, 0 0 50px #ff4757;
             text-align: center;
-            transition: transform 0.8s ease-out;
+            transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none;
             width: 90%;
         }
@@ -133,26 +135,26 @@
         }
 
         .typewriter-msg {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
             color: #ffeaa7;
-            margin-top: 12px;
-            text-shadow: 0 0 8px rgba(255, 234, 167, 0.8);
-            min-height: 22px;
+            margin-top: 15px;
+            text-shadow: 0 0 10px rgba(255, 234, 167, 0.9);
+            min-height: 24px;
         }
 
         .replay-btn {
-            margin-top: 18px;
+            margin-top: 20px;
             background: linear-gradient(45deg, #ff4757, #ff6b81);
             color: #fff;
             border: none;
-            padding: 9px 20px;
+            padding: 10px 24px;
             border-radius: 20px;
             font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             pointer-events: auto;
-            box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+            box-shadow: 0 0 18px rgba(255, 71, 87, 0.6);
             transition: transform 0.2s;
         }
 
@@ -163,11 +165,13 @@
 </head>
 <body>
 
+    <div class="flash" id="flashLayer"></div>
+
     <div class="container" id="mainCard">
         <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Cute Memory" class="profile-img">
         
         <h1>Hey Renu! ❤️</h1>
-        <p class="subtitle">Press the bomb for a magical surprise...</p>
+        <p class="subtitle">Press the bomb for a magical explosion...</p>
 
         <button class="bomb-btn" id="igniteBtn" onclick="startSurprise()">
             <span>Touch to Light Bomb</span> 💣✨
@@ -192,32 +196,42 @@
             const card = document.getElementById('mainCard');
 
             btn.style.pointerEvents = 'none';
-            btn.innerHTML = 'Lighting Fuse... 🧨';
+            btn.innerHTML = 'Fuse Burning... 🧨';
 
+            // Card fade and shrink
             setTimeout(() => {
                 card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
                 setTimeout(() => { card.style.display = 'none'; }, 400);
-                createHeartsExplosion();
-                createConfettiBlast();
-            }, 800);
+
+                // Trigger Flash & Mega Bomb Explosion
+                triggerBlastFlash();
+                createMegaBombExplosion();
+            }, 700);
         }
 
-        function createHeartsExplosion() {
+        function triggerBlastFlash() {
+            const flash = document.getElementById('flashLayer');
+            flash.style.opacity = '1';
+            setTimeout(() => { flash.style.opacity = '0'; }, 200);
+        }
+
+        function createMegaBombExplosion() {
             const container = document.getElementById('canvas-container');
             container.innerHTML = '';
-            const totalHearts = 180; // Bahut saare hearts badha diye hain
+            const totalHearts = 420; // Massive amount of hearts
             const hearts = [];
 
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
 
-            // Step 1: Center se ekdum blast hoke phailna (Explosion center)
+            // Step 1: Create 420 tiny hearts at bomb center
             for (let i = 0; i < totalHearts; i++) {
                 const heart = document.createElement('div');
-                heart.className = 'small-heart';
-                heart.innerHTML = Math.random() > 0.2 ? '❤️' : '💖';
+                heart.className = 'tiny-heart';
+                const heartIcon = Math.random() > 0.25 ? '❤️' : (Math.random() > 0.5 ? '💖' : '✨');
+                heart.innerHTML = heartIcon;
 
-                // Sabhi hearts bilkul center (bomb point) se shuru honge
                 heart.style.left = centerX + 'px';
                 heart.style.top = centerY + 'px';
 
@@ -225,59 +239,50 @@
                 hearts.push(heart);
             }
 
-            // Step 2: Blast hone ke baad turant random bikharna aur fir Big Heart banana
+            // Step 2: High-Speed Burst Phase (Blast Outward)
             setTimeout(() => {
                 hearts.forEach((heart) => {
+                    heart.style.opacity = '1';
+                    
+                    // Explosive physics angles & distances
                     const angle = Math.random() * Math.PI * 2;
-                    const blastRadius = Math.random() * Math.max(window.innerWidth, window.innerHeight) * 0.45;
-                    const scatterX = centerX + Math.cos(angle) * blastRadius;
-                    const scatterY = centerY + Math.sin(angle) * blastRadius;
+                    const maxDist = Math.max(window.innerWidth, window.innerHeight) * (0.35 + Math.random() * 0.35);
+                    const scatterX = centerX + Math.cos(angle) * maxDist;
+                    const scatterY = centerY + Math.sin(angle) * maxDist;
 
+                    heart.style.transition = 'all 0.6s cubic-bezier(0.05, 0.9, 0.1, 1)';
                     heart.style.left = scatterX + 'px';
                     heart.style.top = scatterY + 'px';
                 });
 
-                // Step 3: Bikhre hue hearts ka wapas aakar Big Heart shape lena
+                // Step 3: Smooth Assembly into Big Heart Shape
                 setTimeout(() => {
                     hearts.forEach((heart, index) => {
                         const t = (index / totalHearts) * 2 * Math.PI;
-                        const scale = Math.min(window.innerWidth, window.innerHeight) / 38;
+                        const scale = Math.min(window.innerWidth, window.innerHeight) / 36;
                         
+                        // Heart Formula
                         const heartX = 16 * Math.pow(Math.sin(t), 3);
                         const heartY = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
 
                         const targetX = centerX + heartX * scale;
                         const targetY = centerY + heartY * scale;
 
+                        // Smooth floating convergence
+                        heart.style.transition = 'all 2.2s cubic-bezier(0.25, 1, 0.5, 1)';
                         heart.style.left = targetX + 'px';
                         heart.style.top = targetY + 'px';
                     });
 
-                    // Step 4: Text aur Typewriter show karna
+                    // Step 4: Show Animated Love Text
                     setTimeout(() => {
                         document.getElementById('loveText').classList.add('show');
                         typeWriterEffect();
-                    }, 1200);
+                    }, 1600);
 
-                }, 800);
+                }, 650);
 
-            }, 50);
-        }
-
-        function createConfettiBlast() {
-            const container = document.getElementById('canvas-container');
-            const colors = ['#ff4757', '#ff6b81', '#ffeaa7', '#74b9ff', '#a29bfe'];
-
-            for (let i = 0; i < 70; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '50vh'; // Center se blast hoga
-                confetti.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
-                
-                container.appendChild(confetti);
-            }
+            }, 40);
         }
 
         function typeWriterEffect() {
@@ -289,7 +294,7 @@
                 if (i < messageText.length) {
                     el.innerHTML += messageText.charAt(i);
                     i++;
-                    setTimeout(type, 50);
+                    setTimeout(type, 45);
                 }
             }
             type();
@@ -304,7 +309,10 @@
             const btn = document.getElementById('igniteBtn');
             
             card.style.display = 'block';
-            setTimeout(() => { card.style.opacity = '1'; }, 50);
+            setTimeout(() => { 
+                card.style.opacity = '1'; 
+                card.style.transform = 'scale(1)';
+            }, 50);
             
             btn.style.pointerEvents = 'auto';
             btn.innerHTML = 'Touch to Light Bomb 💣✨';
