@@ -1,359 +1,1019 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise For Renu ❤️</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MR.DEEPANSHU AJGALLE | Website, Billing App & Digital Menu Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@200;300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a227;
+    --gold-light: #e8c96a;
+    --ink: #080c0a;
+    --ink-2: #0f1613;
+    --cream: #faf8f3;
+    --paper: #ffffff;
+    --muted: #6b6b6b;
+    --line: rgba(201,162,39,0.18);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 24px;
+  }
 
-        body {
-            background: radial-gradient(circle at center, #180325 0%, #05000a 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow: hidden;
-            color: #fff;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-        .container {
-            width: 100%;
-            max-width: 380px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
-            text-align: center;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative;
-            z-index: 2;
-            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  body {
+    font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-        .profile-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #ff4757;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(255, 71, 87, 0.6);
-        }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 
-        h1 {
-            color: #ff6b81;
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
+  /* LOGO */
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.5px;
+  }
+  .logo-text span { color: var(--gold-light); font-style: italic; font-weight: 400; }
 
-        p.subtitle {
-            color: #a4b0be;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
+  /* NAV */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 20px 32px; display: flex; justify-content: space-between;
+    align-items: center; transition: all 0.4s ease;
+  }
+  .nav.scrolled {
+    background: rgba(8,12,10,0.96); backdrop-filter: blur(24px);
+    padding: 14px 32px; border-bottom: 1px solid var(--line);
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+  .nav-links a {
+    color: rgba(250,248,243,0.7); text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 400; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .admin-btn {
+    background: var(--gold); color: var(--ink) !important;
+    padding: 8px 18px; border-radius: 50px; font-weight: 500 !important;
+  }
 
-        .bomb-btn {
-            background: linear-gradient(45deg, #ff4757, #ff6b81);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 0 25px rgba(255, 71, 87, 0.8);
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
+  /* HERO */
+  .hero {
+    min-height: 100vh; background: var(--ink); color: var(--cream);
+    display: flex; align-items: center; padding: 130px 32px 80px;
+    position: relative; overflow: hidden;
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(201,162,39,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(201,162,39,0.12) 0%, transparent 50%);
+    animation: glow 18s ease-in-out infinite alternate;
+  }
+  @keyframes glow {
+    0% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+    100% { transform: scale(1.2) rotate(3deg); opacity: 1; }
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,162,39,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,162,39,0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+  }
+  .hero-inner {
+    position: relative; z-index: 3; max-width: 1280px;
+    margin: 0 auto; width: 100%; display: grid;
+    grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center;
+  }
+  .hero-text .kicker {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 28px; font-weight: 400;
+  }
+  .hero-text .kicker::before {
+    content: ''; width: 44px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 500; line-height: 1.05;
+    letter-spacing: -1.5px; margin-bottom: 16px;
+  }
+  .hero-text h1 em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+  .hero-text .hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1rem; color: rgba(250,248,243,0.5);
+    margin-bottom: 16px; font-weight: 300;
+  }
+  .hero-text p {
+    font-size: 1.05rem; color: rgba(250,248,243,0.6);
+    max-width: 520px; margin-bottom: 40px; font-weight: 300; line-height: 1.8;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 36px; font-weight: 500; font-size: 0.75rem;
+    text-decoration: none; letter-spacing: 3px; text-transform: uppercase;
+    transition: all 0.4s var(--ease); position: relative;
+    overflow: hidden; z-index: 1; border: none; cursor: pointer;
+    border-radius: 50px;
+  }
+  .btn-gold { background: var(--gold); color: var(--ink); }
+  .btn-gold:hover { box-shadow: 0 20px 50px rgba(201,162,39,0.4); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    border: 1px solid rgba(250,248,243,0.3);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+  .btn svg { width: 18px; height: 18px; fill: currentColor; }
 
-        .bomb-btn:active {
-            transform: scale(0.92);
-        }
+  .hero-card {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--line);
+    padding: 40px; backdrop-filter: blur(16px);
+    position: relative; border-radius: var(--radius);
+  }
+  .hero-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .hero-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--cream); margin-bottom: 8px; font-weight: 500;
+  }
+  .hero-card .hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.85rem; color: rgba(250,248,243,0.4);
+    margin-bottom: 24px; font-weight: 300;
+  }
+  .hero-card ul { list-style: none; }
+  .hero-card ul li {
+    padding: 12px 0; border-bottom: 1px solid rgba(201,162,39,0.1);
+    font-size: 0.9rem; color: rgba(250,248,243,0.7); font-weight: 300;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .hero-card ul li:last-child { border-bottom: none; }
+  .hero-card ul li span { color: var(--gold-light); font-weight: 500; font-size: 0.85rem; }
 
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 10;
-        }
+  /* SECTION */
+  .section { padding: 120px 0; position: relative; }
+  .section.alt { background: var(--paper); }
+  .section.rounded { border-radius: var(--radius); margin: 0 16px; }
+  .head { text-align: center; margin-bottom: 80px; }
+  .head .eyebrow {
+    display: inline-block; font-size: 0.65rem; letter-spacing: 6px;
+    text-transform: uppercase; color: var(--gold); font-weight: 500;
+    margin-bottom: 20px; position: relative; padding-bottom: 16px;
+  }
+  .head .eyebrow::after {
+    content: ''; position: absolute; bottom: 0; left: 50%;
+    transform: translateX(-50%); width: 50px; height: 1px; background: var(--gold);
+  }
+  .head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 500; line-height: 1.1; color: var(--ink);
+    letter-spacing: -0.5px;
+  }
+  .head .hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1rem; color: var(--muted); margin-top: 8px; font-weight: 300;
+  }
+  .head p {
+    color: var(--muted); max-width: 560px; margin: 20px auto 0;
+    font-size: 1rem; font-weight: 300; line-height: 1.8;
+  }
 
-        /* Sky Shot Rocket Trail */
-        .rocket {
-            position: absolute;
-            width: 8px;
-            height: 25px;
-            background: linear-gradient(to top, transparent, #ffeaa7, #ff4757);
-            border-radius: 50%;
-            box-shadow: 0 0 15px #ff4757, 0 0 30px #ffeaa7;
-            opacity: 0;
-            transition: transform 0.8s cubic-bezier(0.1, 0.7, 0.1, 1), opacity 0.2s;
-        }
+  /* SERVICES */
+  .services {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+  .service {
+    background: var(--paper); border: 1px solid var(--line);
+    padding: 44px 36px; transition: all 0.5s var(--ease);
+    position: relative; overflow: hidden; border-radius: var(--radius);
+  }
+  .service:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(8,12,10,0.1);
+    border-color: var(--gold);
+  }
+  .service .icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+  .service h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 500; color: var(--ink); margin-bottom: 4px;
+  }
+  .service .hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.85rem; font-weight: 400; color: var(--gold); margin-bottom: 14px;
+  }
+  .service p {
+    font-size: 0.92rem; color: var(--muted); font-weight: 300;
+    line-height: 1.8; margin-bottom: 20px;
+  }
+  .service .price-tag {
+    display: inline-block; background: rgba(201,162,39,0.1);
+    color: var(--gold); padding: 6px 14px; font-size: 0.72rem;
+    font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    border-radius: 50px;
+  }
 
-        /* Tiny Glowing Particle Hearts */
-        .tiny-heart {
-            position: absolute;
-            font-size: 8px;
-            opacity: 0;
-            pointer-events: none;
-            text-shadow: 0 0 6px #ff4757, 0 0 14px #ff6b81;
-            will-change: left, top, opacity, transform;
-        }
+  /* PORTFOLIO */
+  .portfolio {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+  }
+  .work {
+    background: var(--paper); border: 1px solid var(--line);
+    overflow: hidden; transition: all 0.5s var(--ease);
+    border-radius: var(--radius);
+  }
+  .work:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(8,12,10,0.12);
+    border-color: var(--gold);
+  }
+  .work-img {
+    height: 220px; background: linear-gradient(135deg, #f5efe2, #ebe2d0);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 0.75rem; letter-spacing: 3px;
+    text-transform: uppercase; border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius); overflow: hidden;
+    position: relative;
+  }
+  .work-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+  .work:hover .work-img img { transform: scale(1.08); }
+  .work-body { padding: 28px; }
+  .work-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: 4px;
+  }
+  .work-body .hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.82rem; font-weight: 400; color: var(--gold); margin-bottom: 10px;
+  }
+  .work-body p {
+    font-size: 0.88rem; color: var(--muted); font-weight: 300; line-height: 1.7;
+  }
 
-        /* Screen Flash on Blast */
-        .flash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(255, 71, 87, 0.3);
-            z-index: 8;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.15s ease-out;
-        }
+  /* PROCESS */
+  .steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .step {
+    padding: 48px 32px; transition: all 0.5s var(--ease);
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); position: relative; overflow: hidden;
+  }
+  .step:hover {
+    background: var(--ink); color: var(--cream);
+    transform: translateY(-8px);
+  }
+  .step:hover .num { color: var(--gold-light); }
+  .step:hover h3 { color: var(--cream); }
+  .step:hover .hindi { color: var(--gold-light); }
+  .step:hover p { color: rgba(250,248,243,0.6); }
+  .step .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 400; color: var(--gold);
+    line-height: 1; margin-bottom: 20px; font-style: italic;
+  }
+  .step h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: 4px;
+  }
+  .step .hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.8rem; font-weight: 400; color: var(--gold); margin-bottom: 12px;
+  }
+  .step p {
+    font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.7;
+  }
 
-        .center-love-text {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            z-index: 20;
-            color: #fff;
-            font-size: 28px;
-            font-weight: bold;
-            text-shadow: 0 0 15px #ff4757, 0 0 35px #ff6b81, 0 0 60px #ff4757;
-            text-align: center;
-            transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none;
-            width: 90%;
-        }
+  /* CTA */
+  .cta-section {
+    background: var(--ink); padding: 120px 32px; text-align: center;
+    position: relative; overflow: hidden; border-radius: var(--radius); margin: 0 16px;
+  }
+  .cta-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 500; color: var(--cream); line-height: 1.1;
+    margin-bottom: 12px; letter-spacing: -1px;
+  }
+  .cta-section .hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1.1rem; color: rgba(250,248,243,0.5); margin-bottom: 20px; font-weight: 300;
+  }
+  .cta-section h2 em { color: var(--gold-light); font-style: italic; }
+  .cta-section p {
+    color: rgba(250,248,243,0.6); font-size: 1rem;
+    font-weight: 300; margin-bottom: 40px; line-height: 1.8;
+  }
 
-        .center-love-text.show {
-            transform: translate(-50%, -50%) scale(1);
-        }
+  /* FOOTER */
+  .footer {
+    background: var(--ink-2); color: var(--cream);
+    padding: 80px 32px 40px; text-align: center;
+    border-top: 1px solid var(--line);
+    border-radius: var(--radius) var(--radius) 0 0; margin-top: 40px;
+  }
+  .footer .contact {
+    display: inline-flex; gap: 40px; flex-wrap: wrap;
+    justify-content: center; margin-bottom: 40px;
+  }
+  .footer .contact a {
+    color: rgba(250,248,243,0.7); text-decoration: none;
+    font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 400; transition: color 0.3s;
+  }
+  .footer .contact a:hover { color: var(--gold-light); }
+  .footer .copy {
+    font-size: 0.68rem; color: rgba(250,248,243,0.3);
+    letter-spacing: 3px; text-transform: uppercase; font-weight: 300;
+  }
 
-        .typewriter-msg {
-            font-size: 14px;
-            font-weight: 500;
-            color: #ffeaa7;
-            margin-top: 15px;
-            text-shadow: 0 0 10px rgba(255, 234, 167, 0.9);
-            min-height: 24px;
-        }
+  /* ============ ADMIN PANEL ============ */
+  .admin-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); z-index: 9999;
+    backdrop-filter: blur(8px); overflow-y: auto; padding: 40px 20px;
+  }
+  .admin-overlay.active { display: block; }
+  .admin-panel {
+    max-width: 900px; margin: 0 auto;
+    background: var(--cream); border-radius: var(--radius);
+    padding: 40px; position: relative;
+  }
+  .admin-panel h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--ink); margin-bottom: 8px;
+  }
+  .admin-panel .sub {
+    color: var(--muted); font-size: 0.9rem; margin-bottom: 32px;
+  }
+  .admin-close {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--ink); color: var(--cream);
+    border: none; width: 36px; height: 36px;
+    border-radius: 50%; cursor: pointer; font-size: 1.2rem;
+  }
+  .admin-tabs {
+    display: flex; gap: 8px; margin-bottom: 32px;
+    border-bottom: 1px solid var(--line); flex-wrap: wrap;
+  }
+  .admin-tab {
+    padding: 12px 20px; background: none; border: none;
+    cursor: pointer; font-family: 'Inter', sans-serif;
+    font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  .admin-tab.active {
+    color: var(--gold); border-bottom-color: var(--gold);
+  }
+  .admin-tab-content { display: none; }
+  .admin-tab-content.active { display: block; }
 
-        .replay-btn {
-            margin-top: 20px;
-            background: linear-gradient(45deg, #ff4757, #ff6b81);
-            color: #fff;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-            pointer-events: auto;
-            box-shadow: 0 0 18px rgba(255, 71, 87, 0.6);
-            transition: transform 0.2s;
-        }
+  .admin-field { margin-bottom: 20px; }
+  .admin-field label {
+    display: block; font-size: 0.75rem; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .admin-field input,
+  .admin-field textarea {
+    width: 100%; padding: 12px 16px;
+    border: 1px solid var(--line); border-radius: 12px;
+    font-family: 'Inter', sans-serif; font-size: 0.92rem;
+    background: var(--paper); color: var(--ink);
+  }
+  .admin-field input:focus,
+  .admin-field textarea:focus {
+    outline: none; border-color: var(--gold);
+  }
+  .admin-field textarea { resize: vertical; min-height: 80px; }
 
-        .replay-btn:active {
-            transform: scale(0.95);
-        }
-    </style>
+  .admin-item {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px; margin-bottom: 20px;
+    position: relative;
+  }
+  .admin-item .remove-btn {
+    position: absolute; top: 16px; right: 16px;
+    background: #ff4444; color: white; border: none;
+    padding: 6px 12px; border-radius: 50px;
+    cursor: pointer; font-size: 0.7rem; letter-spacing: 1px;
+  }
+  .admin-save {
+    background: var(--gold); color: var(--ink);
+    padding: 14px 32px; border: none; border-radius: 50px;
+    font-weight: 500; cursor: pointer; letter-spacing: 2px;
+    text-transform: uppercase; font-size: 0.75rem;
+    margin-top: 20px;
+  }
+  .admin-add {
+    background: var(--ink); color: var(--cream);
+    padding: 12px 24px; border: none; border-radius: 50px;
+    font-weight: 500; cursor: pointer; letter-spacing: 2px;
+    text-transform: uppercase; font-size: 0.72rem;
+    margin-bottom: 20px;
+  }
+
+  /* LOGIN */
+  .login-box {
+    max-width: 400px; margin: 100px auto;
+    background: var(--cream); border-radius: var(--radius);
+    padding: 48px 40px; text-align: center;
+  }
+  .login-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; margin-bottom: 8px;
+  }
+  .login-box p { color: var(--muted); font-size: 0.85rem; margin-bottom: 32px; }
+  .login-box input {
+    width: 100%; padding: 14px 18px; margin-bottom: 16px;
+    border: 1px solid var(--line); border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+  .login-box input:focus { outline: none; border-color: var(--gold); }
+  .login-box button {
+    width: 100%; padding: 14px;
+    background: var(--gold); color: var(--ink);
+    border: none; border-radius: 12px;
+    font-weight: 600; cursor: pointer;
+    letter-spacing: 2px; text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+  .login-error {
+    color: #ff4444; font-size: 0.8rem; margin-top: 12px;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .section { padding: 80px 0; }
+    .admin-panel { padding: 24px; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="flash" id="flashLayer"></div>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="logo-text" id="navLogo">Your <span>Name</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Our Services</a></li>
+    <li><a href="#work">Our Works</a></li>
+    <li><a href="#process">Work Process</a></li>
+    <li><a href="#" class="admin-btn" id="adminOpenBtn">Admin</a></li>
+  </ul>
+</nav>
 
-    <div class="container" id="mainCard">
-        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Cute Memory" class="profile-img">
-        
-        <h1>Hey Renu! ❤️</h1>
-        <p class="subtitle">Press to launch the special Sky Shot...</p>
-
-        <button class="bomb-btn" id="igniteBtn" onclick="startSurprise()">
-            <span>Launch Sky Shot</span> 🚀✨
-        </button>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="kicker" id="heroKicker">Web Developer & App Builder / वेब डेवलपर और ऐप बिल्डर</div>
+      <h1 id="heroTitle">Small Business Ke Liye <em>Digital Solutions</em></h1>
+      <div class="hindi" id="heroHindi">छोटे बिज़नेस के लिए डिजिटल समाधान</div>
+      <p id="heroDesc">Website, billing app, digital menu — sab kuch ek jagah. Raipur se poore India tak, chhote business ko digital banata hoon.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn btn-gold" id="heroWhatsapp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Contact
+        </a>
+        <a href="#work" class="btn btn-outline">Our Works</a>
+      </div>
     </div>
-
-    <div id="canvas-container"></div>
-    
-    <div class="center-love-text" id="loveText">
-        Deepanshu<br>❤️<br>Love Renu
-        
-        <div class="typewriter-msg" id="typewriter"></div>
-
-        <button class="replay-btn" onclick="resetSurprise()">Play Again 🔄</button>
+    <div class="hero-card">
+      <h3>Our Services</h3>
+      <div class="hindi">हमारी सेवाएं</div>
+      <ul id="heroServiceList">
+        <li>Business Website / बिज़नेस वेबसाइट <span>₹12,000+</span></li>
+        <li>Billing App / बिलिंग ऐप <span>₹15,000+</span></li>
+        <li>Digital Menu / डिजिटल मेनू <span>₹4,000+</span></li>
+        <li>QR Code Menu / क्यूआर कोड मेनू <span>₹2,500+</span></li>
+        <li>Maintenance / मेंटेनेंस <span>₹2,000/mo</span></li>
+      </ul>
     </div>
+  </div>
+</header>
 
-    <script>
-        const messageText = "You are the most precious person in my life! ✨🌸";
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Our Services / हमारी सेवाएं</div>
+      <h2>Our Services</h2>
+      <div class="hindi">हमारी सेवाएं</div>
+      <p>Chhote business ke liye affordable digital solutions</p>
+    </div>
+    <div class="services" id="servicesList"></div>
+  </div>
+</section>
 
-        function startSurprise() {
-            const btn = document.getElementById('igniteBtn');
-            const card = document.getElementById('mainCard');
+<!-- WORK -->
+<section class="section alt rounded" id="work">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Our Works / हमारे काम</div>
+      <h2>Our Works</h2>
+      <div class="hindi">हमारे काम</div>
+      <p>Kuch projects jo maine banaye hain</p>
+    </div>
+    <div class="portfolio" id="worksList"></div>
+  </div>
+</section>
 
-            btn.style.pointerEvents = 'none';
-            btn.innerHTML = 'Igniting Rocket... 🚀';
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Work Process / काम की प्रक्रिया</div>
+      <h2>Work Process</h2>
+      <div class="hindi">काम की प्रक्रिया</div>
+      <p>Simple 4-step process — bilkul transparent</p>
+    </div>
+    <div class="steps" id="processList"></div>
+  </div>
+</section>
 
-            // Card smooth fade-out
-            setTimeout(() => {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.85)';
-                setTimeout(() => { card.style.display = 'none'; }, 500);
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <h2>Apna Business <em>Digital</em> Banao</h2>
+    <div class="hindi">अपना बिज़नेस डिजिटल बनाओ</div>
+    <p>WhatsApp par message karo, free consultation pao. Aaj hi shuru karte hain.</p>
+    <a href="#" class="btn btn-gold" id="ctaWhatsapp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Contact
+    </a>
+  </div>
+</section>
 
-                // Launch Sky Shot Rocket
-                launchSkyShot();
-            }, 500);
-        }
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="logo-text" id="footerLogo">Your <span>Name</span></div>
+  <div class="contact" id="footerContact">
+    <a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a>
+    <a href="https://instagram.com/yourhandle">@yourhandle</a>
+    <a href="mailto:hello@yourname.com">hello@yourname.com</a>
+  </div>
+  <div class="copy" id="footerCopy">© 2026 Your Name — Raipur, Chhattisgarh</div>
+</footer>
 
-        function launchSkyShot() {
-            const container = document.getElementById('canvas-container');
-            const startX = window.innerWidth / 2;
-            const startY = window.innerHeight;
-            const blastY = window.innerHeight * 0.35; // Screen ke top part par fatne ke liye
+<!-- ============ ADMIN OVERLAY ============ -->
+<div class="admin-overlay" id="adminOverlay">
 
-            const rocket = document.createElement('div');
-            rocket.className = 'rocket';
-            rocket.style.left = (startX - 4) + 'px';
-            rocket.style.top = startY + 'px';
-            rocket.style.opacity = '1';
+  <!-- LOGIN -->
+  <div id="loginView">
+    <div class="login-box">
+      <h2>Admin Login</h2>
+      <p>Apna username aur password daalo</p>
+      <input type="text" id="loginUser" placeholder="Username">
+      <input type="password" id="loginPass" placeholder="Password">
+      <button onclick="adminLogin()">Login</button>
+      <div class="login-error" id="loginError">Galat username ya password</div>
+    </div>
+  </div>
 
-            container.appendChild(rocket);
+  <!-- PANEL -->
+  <div id="panelView" style="display:none;">
+    <div class="admin-panel">
+      <button class="admin-close" onclick="closeAdmin()">×</button>
+      <h2>Admin Panel</h2>
+      <div class="sub">Yahan se apni website ka content manage karo</div>
 
-            // Animate Rocket Going Up
-            requestAnimationFrame(() => {
-                rocket.style.transform = `translateY(-${startY - blastY}px)`;
-            });
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchTab(event, 'general')">General</button>
+        <button class="admin-tab" onclick="switchTab(event, 'services')">Services</button>
+        <button class="admin-tab" onclick="switchTab(event, 'works')">Our Works</button>
+        <button class="admin-tab" onclick="switchTab(event, 'process')">Process</button>
+      </div>
 
-            // Reaches top point & Explodes
-            setTimeout(() => {
-                rocket.style.opacity = '0';
-                triggerBlastFlash();
-                triggerSkyShotExplosion(startX, blastY);
-                setTimeout(() => rocket.remove(), 200);
-            }, 750);
-        }
+      <!-- GENERAL TAB -->
+      <div class="admin-tab-content active" id="tab-general">
+        <div class="admin-field">
+          <label>Site Title / Logo Text</label>
+          <input type="text" id="inpLogo" placeholder="Your Name">
+        </div>
+        <div class="admin-field">
+          <label>Hero Kicker (Chhota Text)</label>
+          <input type="text" id="inpKicker" placeholder="Web Developer & App Builder">
+        </div>
+        <div class="admin-field">
+          <label>Hero Title (Bada Text)</label>
+          <input type="text" id="inpTitle" placeholder="Small Business Ke Liye Digital Solutions">
+        </div>
+        <div class="admin-field">
+          <label>Hero Hindi Subtitle</label>
+          <input type="text" id="inpHindi" placeholder="छोटे बिज़नेस के लिए डिजिटल समाधान">
+        </div>
+        <div class="admin-field">
+          <label>Hero Description</label>
+          <textarea id="inpDesc" placeholder="Website, billing app, digital menu..."></textarea>
+        </div>
+        <div class="admin-field">
+          <label>WhatsApp Number (with country code, e.g. 919876543210)</label>
+          <input type="text" id="inpWhatsapp" placeholder="919876543210">
+        </div>
+        <div class="admin-field">
+          <label>Footer Phone</label>
+          <input type="text" id="inpPhone" placeholder="+91 98765 43210">
+        </div>
+        <div class="admin-field">
+          <label>Instagram Handle</label>
+          <input type="text" id="inpInsta" placeholder="@yourhandle">
+        </div>
+        <div class="admin-field">
+          <label>Email</label>
+          <input type="text" id="inpEmail" placeholder="hello@yourname.com">
+        </div>
+        <div class="admin-field">
+          <label>Footer Copyright Text</label>
+          <input type="text" id="inpCopy" placeholder="© 2026 Your Name — Raipur">
+        </div>
+        <button class="admin-save" onclick="saveGeneral()">Save General</button>
+      </div>
 
-        function triggerBlastFlash() {
-            const flash = document.getElementById('flashLayer');
-            flash.style.opacity = '1';
-            setTimeout(() => { flash.style.opacity = '0'; }, 200);
-        }
+      <!-- SERVICES TAB -->
+      <div class="admin-tab-content" id="tab-services">
+        <button class="admin-add" onclick="addService()">+ Add Service</button>
+        <div id="servicesEditor"></div>
+        <button class="admin-save" onclick="saveServices()">Save Services</button>
+      </div>
 
-        function triggerSkyShotExplosion(blastX, blastY) {
-            const container = document.getElementById('canvas-container');
-            const totalHearts = 450; // Professional heavy density
-            const hearts = [];
-            const screenCenterX = window.innerWidth / 2;
-            const screenCenterY = window.innerHeight / 2;
+      <!-- WORKS TAB -->
+      <div class="admin-tab-content" id="tab-works">
+        <button class="admin-add" onclick="addWork()">+ Add Work / Project</button>
+        <div id="worksEditor"></div>
+        <button class="admin-save" onclick="saveWorks()">Save Works</button>
+      </div>
 
-            // Step 1: Generate 450 Hearts at Explosion Point
-            for (let i = 0; i < totalHearts; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'tiny-heart';
-                const heartIcon = Math.random() > 0.2 ? '❤️' : (Math.random() > 0.5 ? '💖' : '✨');
-                heart.innerHTML = heartIcon;
+      <!-- PROCESS TAB -->
+      <div class="admin-tab-content" id="tab-process">
+        <button class="admin-add" onclick="addProcess()">+ Add Process Step</button>
+        <div id="processEditor"></div>
+        <button class="admin-save" onclick="saveProcess()">Save Process</button>
+      </div>
 
-                heart.style.left = blastX + 'px';
-                heart.style.top = blastY + 'px';
+    </div>
+  </div>
+</div>
 
-                container.appendChild(heart);
-                hearts.push(heart);
-            }
+<script>
+  /* ============================================
+     DEFAULT DATA
+  ============================================ */
+  const DEFAULT_DATA = {
+    general: {
+      logo: 'Your Name',
+      kicker: 'Web Developer & App Builder / वेब डेवलपर और ऐप बिल्डर',
+      title: 'Small Business Ke Liye Digital Solutions',
+      hindi: 'छोटे बिज़नेस के लिए डिजिटल समाधान',
+      desc: 'Website, billing app, digital menu — sab kuch ek jagah. Raipur se poore India tak, chhote business ko digital banata hoon.',
+      whatsapp: '91XXXXXXXXXX',
+      phone: '+91 XXXXX XXXXX',
+      insta: '@yourhandle',
+      email: 'hello@yourname.com',
+      copy: '© 2026 Your Name — Raipur, Chhattisgarh'
+    },
+    services: [
+      { icon: '🌐', title: 'Business Website', hindi: 'बिज़नेस वेबसाइट', desc: 'Dukaan, hotel, clinic, coaching — kisi bhi business ke liye professional website.', price: '₹12,000 onwards' },
+      { icon: '🧾', title: 'Billing App', hindi: 'बिलिंग ऐप', desc: 'Kirana, restaurant ke liye simple billing software. GST invoice aur stock tracking.', price: '₹15,000 onwards' },
+      { icon: '📱', title: 'Digital Menu', hindi: 'डिजिटल मेनू', desc: 'Restaurant, cafe ke liye QR-code based digital menu.', price: '₹4,000 onwards' },
+      { icon: '📲', title: 'QR Code Solutions', hindi: 'क्यूआर कोड', desc: 'QR code menu, QR payment, QR feedback — sab kuch.', price: '₹2,500 onwards' },
+      { icon: '🔧', title: 'Maintenance', hindi: 'मेंटेनेंस', desc: 'Website ya app ka regular update, bug fix, aur support.', price: '₹2,000/month' },
+      { icon: '🎨', title: 'Custom Design', hindi: 'कस्टम डिज़ाइन', desc: 'Logo, visiting card, banner, social media post.', price: '₹3,500 onwards' }
+    ],
+    works: [
+      { img: '', title: 'Sharma Kirana Store', hindi: 'बिलिंग ऐप + स्टॉक मैनेजमेंट', desc: 'Billing app + stock management system with GST invoice.' },
+      { img: '', title: 'Hotel Annapurna', hindi: 'डिजिटल मेनू + ऑर्डरिंग', desc: 'Digital QR menu + online ordering system.' },
+      { img: '', title: 'Dr. Verma Clinic', hindi: 'अपॉइंटमेंट बुकिंग', desc: 'Appointment booking website with SMS reminders.' },
+      { img: '', title: 'Gupta Coaching', hindi: 'स्टूडेंट पोर्टल', desc: 'Student portal with attendance and fee management.' },
+      { img: '', title: 'Verma Mobile Shop', hindi: 'बिलिंग + IMEI ट्रैकिंग', desc: 'Mobile shop billing software with IMEI tracking.' },
+      { img: '', title: 'Anjali Boutique', hindi: 'ऑनलाइन स्टोर', desc: 'Online boutique store with WhatsApp ordering.' }
+    ],
+    process: [
+      { title: 'Discussion', hindi: 'चर्चा', desc: 'WhatsApp ya call par apni zaroorat batao. Main solution suggest karunga.' },
+      { title: 'Design & Demo', hindi: 'डिज़ाइन और डेमो', desc: 'Pehle demo banaunga. Jab tak pasand na aaye, kaam nahi rukega.' },
+      { title: 'Development', hindi: 'डेवलपमेंट', desc: 'Final approval ke baad, poora system develop karunga.' },
+      { title: 'Handover & Support', hindi: 'हैंडओवर और सपोर्ट', desc: 'Training, files handover, aur 1 mahine free support.' }
+    ]
+  };
 
-            // Step 2: Realistic Radial Burst Outward (Fireworks Burst)
-            setTimeout(() => {
-                hearts.forEach((heart) => {
-                    heart.style.opacity = '1';
-                    
-                    const angle = Math.random() * Math.PI * 2;
-                    const velocity = Math.random() * (Math.max(window.innerWidth, window.innerHeight) * 0.4);
-                    const scatterX = blastX + Math.cos(angle) * velocity;
-                    const scatterY = blastY + Math.sin(angle) * velocity;
+  /* ============================================
+     DATA LOAD / SAVE
+  ============================================ */
+  let DATA = JSON.parse(localStorage.getItem('portfolioData')) || JSON.parse(JSON.stringify(DEFAULT_DATA));
 
-                    // Fast explosive easing
-                    heart.style.transition = 'all 0.65s cubic-bezier(0.05, 0.85, 0.1, 1)';
-                    heart.style.left = scatterX + 'px';
-                    heart.style.top = scatterY + 'px';
-                });
+  function saveData() {
+    localStorage.setItem('portfolioData', JSON.stringify(DATA));
+  }
 
-                // Step 3: Magnetic Convergence into Big Heart Shape at Center Screen
-                setTimeout(() => {
-                    hearts.forEach((heart, index) => {
-                        const t = (index / totalHearts) * 2 * Math.PI;
-                        const scale = Math.min(window.innerWidth, window.innerHeight) / 36;
-                        
-                        // Precise Heart Equation
-                        const heartX = 16 * Math.pow(Math.sin(t), 3);
-                        const heartY = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+  /* ============================================
+     RENDER WEBSITE
+  ============================================ */
+  function renderWebsite() {
+    const g = DATA.general;
 
-                        const targetX = screenCenterX + heartX * scale;
-                        const targetY = screenCenterY + heartY * scale;
+    document.getElementById('navLogo').innerHTML = g.logo.replace(/(\S+)$/, '<span>$1</span>');
+    document.getElementById('footerLogo').innerHTML = g.logo.replace(/(\S+)$/, '<span>$1</span>');
+    document.getElementById('heroKicker').textContent = g.kicker;
+    document.getElementById('heroTitle').innerHTML = g.title.replace(/(\S+)$/, '<em>$1</em>');
+    document.getElementById('heroHindi').textContent = g.hindi;
+    document.getElementById('heroDesc').textContent = g.desc;
 
-                        // Smooth Floating Transition to Center
-                        heart.style.transition = 'all 2.3s cubic-bezier(0.25, 1, 0.5, 1)';
-                        heart.style.left = targetX + 'px';
-                        heart.style.top = targetY + 'px';
-                    });
+    const waLink = 'https://wa.me/' + g.whatsapp;
+    document.getElementById('heroWhatsapp').href = waLink;
+    document.getElementById('ctaWhatsapp').href = waLink;
 
-                    // Step 4: Show Animated Text Message
-                    setTimeout(() => {
-                        document.getElementById('loveText').classList.add('show');
-                        typeWriterEffect();
-                    }, 1700);
+    document.getElementById('heroServiceList').innerHTML = DATA.services.slice(0, 5).map(s =>
+      `<li>${s.title} / ${s.hindi} <span>${s.price.split(' ')[0]}+</span></li>`
+    ).join('');
 
-                }, 700);
+    document.getElementById('servicesList').innerHTML = DATA.services.map(s => `
+      <div class="service">
+        <span class="icon">${s.icon}</span>
+        <h3>${s.title}</h3>
+        <div class="hindi">${s.hindi}</div>
+        <p>${s.desc}</p>
+        <span class="price-tag">${s.price}</span>
+      </div>
+    `).join('');
 
-            }, 40);
-        }
+    document.getElementById('worksList').innerHTML = DATA.works.map(w => `
+      <div class="work">
+        <div class="work-img">
+          ${w.img ? `<img src="${w.img}" alt="${w.title}">` : '📸 Photo Yahan Daalo'}
+        </div>
+        <div class="work-body">
+          <h3>${w.title}</h3>
+          <div class="hindi">${w.hindi}</div>
+          <p>${w.desc}</p>
+        </div>
+      </div>
+    `).join('');
 
-        function typeWriterEffect() {
-            let i = 0;
-            const el = document.getElementById('typewriter');
-            el.innerHTML = '';
-            
-            function type() {
-                if (i < messageText.length) {
-                    el.innerHTML += messageText.charAt(i);
-                    i++;
-                    setTimeout(type, 45);
-                }
-            }
-            type();
-        }
+    document.getElementById('processList').innerHTML = DATA.process.map((p, i) => `
+      <div class="step">
+        <div class="num">0${i + 1}</div>
+        <h3>${p.title}</h3>
+        <div class="hindi">${p.hindi}</div>
+        <p>${p.desc}</p>
+      </div>
+    `).join('');
 
-        function resetSurprise() {
-            document.getElementById('loveText').classList.remove('show');
-            document.getElementById('canvas-container').innerHTML = '';
-            document.getElementById('typewriter').innerHTML = '';
-            
-            const card = document.getElementById('mainCard');
-            const btn = document.getElementById('igniteBtn');
-            
-            card.style.display = 'block';
-            setTimeout(() => { 
-                card.style.opacity = '1'; 
-                card.style.transform = 'scale(1)';
-            }, 50);
-            
-            btn.style.pointerEvents = 'auto';
-            btn.innerHTML = 'Launch Sky Shot 🚀✨';
-        }
-    </script>
+    document.getElementById('footerContact').innerHTML = `
+      <a href="tel:${g.phone}">${g.phone}</a>
+      <a href="https://instagram.com/${g.insta.replace('@','')}">${g.insta}</a>
+      <a href="mailto:${g.email}">${g.email}</a>
+    `;
+    document.getElementById('footerCopy').textContent = g.copy;
+  }
+
+  /* ============================================
+     ADMIN LOGIN
+  ============================================ */
+  const ADMIN_USER = 'admin';
+  const ADMIN_PASS = 'admin123';
+
+  document.getElementById('adminOpenBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('adminOverlay').classList.add('active');
+    document.getElementById('loginView').style.display = 'block';
+    document.getElementById('panelView').style.display = 'none';
+  });
+
+  function adminLogin() {
+    const u = document.getElementById('loginUser').value;
+    const p = document.getElementById('loginPass').value;
+    if (u === ADMIN_USER && p === ADMIN_PASS) {
+      document.getElementById('loginView').style.display = 'none';
+      document.getElementById('panelView').style.display = 'block';
+      loadAdminForms();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  function closeAdmin() {
+    document.getElementById('adminOverlay').classList.remove('active');
+  }
+
+  function switchTab(e, tab) {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+  }
+
+  /* ============================================
+     ADMIN FORMS
+  ============================================ */
+  function loadAdminForms() {
+    const g = DATA.general;
+    document.getElementById('inpLogo').value = g.logo;
+    document.getElementById('inpKicker').value = g.kicker;
+    document.getElementById('inpTitle').value = g.title;
+    document.getElementById('inpHindi').value = g.hindi;
+    document.getElementById('inpDesc').value = g.desc;
+    document.getElementById('inpWhatsapp').value = g.whatsapp;
+    document.getElementById('inpPhone').value = g.phone;
+    document.getElementById('inpInsta').value = g.insta;
+    document.getElementById('inpEmail').value = g.email;
+    document.getElementById('inpCopy').value = g.copy;
+
+    renderServicesEditor();
+    renderWorksEditor();
+    renderProcessEditor();
+  }
+
+  function saveGeneral() {
+    DATA.general = {
+      logo: document.getElementById('inpLogo').value,
+      kicker: document.getElementById('inpKicker').value,
+      title: document.getElementById('inpTitle').value,
+      hindi: document.getElementById('inpHindi').value,
+      desc: document.getElementById('inpDesc').value,
+      whatsapp: document.getElementById('inpWhatsapp').value,
+      phone: document.getElementById('inpPhone').value,
+      insta: document.getElementById('inpInsta').value,
+      email: document.getElementById('inpEmail').value,
+      copy: document.getElementById('inpCopy').value
+    };
+    saveData();
+    renderWebsite();
+    alert('General settings saved!');
+  }
+
+  /* SERVICES EDITOR */
+  function renderServicesEditor() {
+    document.getElementById('servicesEditor').innerHTML = DATA.services.map((s, i) => `
+      <div class="admin-item">
+        <button class="remove-btn" onclick="removeService(${i})">Remove</button>
+        <div class="admin-field">
+          <label>Icon (emoji)</label>
+          <input type="text" value="${s.icon}" onchange="DATA.services[${i}].icon=this.value">
+        </div>
+        <div class="admin-field">
+          <label>Title (English)</label>
+          <input type="text" value="${s.title}" onchange="DATA.services[${i}].title=this.value">
+        </div>
+        <div class="admin-field">
+          <label>Hindi Title</label>
+          <input type="text" value="${s.hindi}" onchange="DATA.services[${i}].hindi=this.value">
+        </div>
+        <div class="admin-field">
+          <label>Description</label>
+          <textarea onchange="DATA.services[${i}].desc=this.value">${s.desc}</textarea>
+        </div>
+        <div class="admin-field">
+          <label>Price</label>
+          <input type="text" value="${s.price}" onchange="DATA.services[${i}].price=this.value">
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addService() {
+    DATA.services.push({ icon: '✨', title: 'New Service', hindi: 'नई सेवा', desc: 'Description yahan likho', price: '₹0 onwards' });
+    renderServicesEditor();
+  }
+
+  function removeService(i) {
+    DATA.services.splice(i, 1);
+    renderServicesEditor();
+  }
+
+  function saveServices() {
+    saveData();
+    renderWebsite();
+    alert('Services saved!');
+  }
+
+  /* WORKS EDITOR */
+  function renderWorksEditor() {
+    document.getElementById('worksEditor').innerHTML = DATA.works.map((w, i) => `
+      <div class="admin-item">
+        <button class="remove-btn" onclick="removeWork(${i})">Remove</button>
+        <div class="admin-field">
+          <label>Photo (Upload)</label>
+          <input type="file" accept="image/*" onchange="handleImageUpload(event, ${i})">
+          ${w.img ? `<img src="${w.img}" style="max-width:120px;margin-top:8px;border-radius:8px;">` : ''}
+        </div>
+        <div class="admin-field">
+          <label>Project Title</label>
+          <input type="text" value="${w.title}" onchange="DATA.works[${i}].title=this.value">
+        </div>
+        <div class="admin-field">
+          <label>Hindi Subtitle</label>
+          <input type="text" value="${w.hindi}" onchange="DATA.works[${i}].hindi=this.value">
+        </div>
+        <div class="admin-field">
+          <label>Description</label>
+          <textarea onchange="DATA.works[${i}].desc=this.value">${w.desc}</textarea>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addWork() {
+    DATA.works.push({ img: '', title: 'New Project', hindi: 'नया प्रोजेक्ट', desc: 'Description yahan likho' });
+    renderWorksEditor();
+  }
+
+  function removeWork(i) {
+    DATA.works.splice(i, 1);
+    renderWorksEditor();
+  }
+
+  function handleImageUpload(e, i) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      DATA.works[i].img = ev.target.result;
+      renderWorksEditor();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function saveWorks() {
+    saveData();
+    renderWebsite();
+    alert('Works saved!');
+  }
+
+  /* PROCESS EDITOR */
+  function renderProcessEditor() {
+    document.getElementById('processEditor').innerHTML = DATA.process.map((p, i) => `
+      <div class="admin-item">
+        <button class="remove-btn" onclick="removeProcess(${i})">Remove</button>
+        <div class="admin-field">
+          <label>Step ${i + 1} Title</label>
+          <input type="text" value="${p.title}" onchange="DATA.process[${i}].title=this.value">
+        </div>
+        <div class="admin-field">
+          <label>Hindi Title</label>
+          <input type="text" value="${p.hindi}" onchange="DATA.process[${i}].hindi=this.value">
+        </div>
+        <div class="admin-field">
+          <label>Description</label>
+          <textarea onchange="DATA.process[${i}].desc=this.value">${p.desc}</textarea>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addProcess() {
+    DATA.process.push({ title: 'New Step', hindi: 'नया स्टेप', desc: 'Description yahan likho' });
+    renderProcessEditor();
+  }
+
+  function removeProcess(i) {
+    DATA.process.splice(i, 1);
+    renderProcessEditor();
+  }
+
+  function saveProcess() {
+    saveData();
+    renderWebsite();
+    alert('Process saved!');
+  }
+
+  /* ============================================
+     INIT
+  ============================================ */
+  renderWebsite();
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
+  });
+</script>
 </body>
 </html>
